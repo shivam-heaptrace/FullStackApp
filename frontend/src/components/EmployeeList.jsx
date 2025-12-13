@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getEmployees } from "../api/employeeApi";
+import "../css/style.css";
 
-const EmployeeList = () => {
+const EmployeeList = ({ handleLogout }) => {
   const [employees, setEmployees] = useState([]);
 
   let thtd = {
-    border: "1px solid black",
     padding: "8px",
     textAlign: "left",
+    border: "1px solid black",
   };
 
   useEffect(() => {
@@ -19,29 +20,40 @@ const EmployeeList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Employee List</h2>
-      <table
+    <>
+      <button
+        onClick={handleLogout}
+        style={{ display: "block", marginLeft: "auto" }}
+      >
+        Logout
+      </button>
+      <div
+        className="home"
         style={{
-          border: "1px solid black",
-          borderCollapse: "collapse",
-          padding: "20px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <tbody>
-          <tr>
-            <th style={thtd}>Full Name</th>
-            <th style={thtd}>Email ID</th>
-          </tr>
-          {employees.map((emp) => (
-            <tr key={emp.id}>
-              <td style={thtd}>{emp.name}</td>
-              <td style={thtd}>{emp.email}</td>
+        <h2>Employee List</h2>
+        <table>
+          <thead style={{ background: "yellow" }}>
+            <tr>
+              <th style={thtd}>Full Name</th>
+              <th style={thtd}>Email ID</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {employees.map((emp) => (
+              <tr key={emp.id}>
+                <td style={thtd}>{emp.name}</td>
+                <td style={thtd}>{emp.email}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 

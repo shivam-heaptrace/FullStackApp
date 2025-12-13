@@ -25,14 +25,9 @@ function App() {
   return (
     <div>
       {!isLoggedIn ? (
-        <>
-          <Home onLogin={handleLogin} />
-        </>
+        <Home onLogin={handleLogin} />
       ) : (
-        <>
-          <button onClick={handleLogout}>Logout</button>
-          <EmployeeList />
-        </>
+        <EmployeeList handleLogout={handleLogout} />
       )}
     </div>
   );

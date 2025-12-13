@@ -55,3 +55,8 @@ button:active {
   text-align: center;
   color: red;
 }
+
+table {
+  border-collapse: collapse;
+  box-shadow: 0px 8px 4px black;
+}
