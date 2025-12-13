@@ -11,12 +11,15 @@ export default function Home({ onLogin }) {
   const [ele, setEle] = useState(true);
   const [status, setStatus] = useState(initMessage);
 
-  const props = { status, setStatus }
+  const props = { status, setStatus };
 
   return (
     <>
       <button
-        onClick={(e) => setEle(!ele)}
+        onClick={(e) => {
+          setEle(!ele);
+          setStatus(initMessage);
+        }}
         style={{ display: "block", marginLeft: "auto", width: "80px" }}
       >
         {ele ? "Register" : "Login"}
@@ -25,7 +28,7 @@ export default function Home({ onLogin }) {
         className="home"
         style={{ display: "flex", justifyContent: "center" }}
       >
-        {ele ? <Login onLogin={onLogin} {...props} /> : <Register {...props}/>}
+        {ele ? <Login onLogin={onLogin} {...props} /> : <Register {...props} />}
       </div>
     </>
   );
