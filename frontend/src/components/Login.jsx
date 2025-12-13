@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { loginEmployee } from "../api/employeeApi";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -11,6 +11,7 @@ const Login = () => {
     try {
       const res = await loginEmployee(email, password);
       setMessage(res.data.detail);
+      onLogin();
     } catch (err) {
       setMessage(err.response?.data?.detail || "Error");
     }
