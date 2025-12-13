@@ -1,16 +1,9 @@
 import React, { useRef, useState } from "react";
 import { loginEmployee } from "../api/employeeApi";
-import "../css/login.css";
 import "../css/style.css";
 
-const Login = ({ onLogin }) => {
-  const initMessage = {
-    message: "",
-    success: null,
-  };
-
+const Login = ({ onLogin, status, setStatus }) => {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState(initMessage);
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {

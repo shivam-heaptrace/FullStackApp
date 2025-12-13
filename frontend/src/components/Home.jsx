@@ -3,7 +3,15 @@ import Login from "./Login";
 import Register from "./Register";
 
 export default function Home({ onLogin }) {
+  const initMessage = {
+    message: "",
+    success: null,
+  };
+
   const [ele, setEle] = useState(true);
+  const [status, setStatus] = useState(initMessage);
+
+  const props = { status, setStatus }
 
   return (
     <>
@@ -13,8 +21,11 @@ export default function Home({ onLogin }) {
       >
         {ele ? "Register" : "Login"}
       </button>
-      <div className="home" style={{ display: "flex", justifyContent: "center" }}>
-        {ele ? <Login onLogin={onLogin} /> : <Register />}
+      <div
+        className="home"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        {ele ? <Login onLogin={onLogin} {...props} /> : <Register {...props}/>}
       </div>
     </>
   );

@@ -2,25 +2,27 @@ import React, { useState } from "react";
 import { registerEmployee } from "../api/employeeApi";
 import "../css/style.css";
 
-const Register = () => {
+const Register = ({ status, setStatus }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await registerEmployee(name, email, password);
-      setMessage(res.data.detail);
+      setStatus({ message: res.data.detail, success: true });
     } catch (err) {
-      setMessage(err.response?.data?.detail || "Error");
+      setStatus({
+        message: err.response?.data?.detail || "Error",
+        success: false,
+      });
     }
   };
 
   return (
     <div>
-      <h2 style={{textAlign:'center'}}>Register</h2>
+      <h2 style={{ textAlign: "center" }}>Register</h2>
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Name"
@@ -40,7 +42,11 @@ const Register = () => {
         />
         <button type="submit">Register</button>
       </form>
-      <p>{message}</p>
+      {status.message && (
+        <p className={status.success ? "success" : "failed"}>
+          {status.message}
+        </p>
+      )}
     </div>
   );
 };
