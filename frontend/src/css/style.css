@@ -1,0 +1,35 @@
+Form {
+    gap: 10px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    background: whitesmoke;  
+    border-radius: 10px;
+    box-shadow: 0px 8px 4px black;
+}
+
+input{
+    padding: 8px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 0px 8px 4px black;
+}
+
+input:focus{
+    box-shadow: 0px 8px 4px red;
+}
+
+button{
+    border: 0;
+    padding: 8px;
+    color: white;
+    outline: none;
+    border-radius: 10px;
+    background-color: black;
+    box-shadow: 0px 8px 4px black;
+}
+
+button:active{
+    transform: translate(2px, 3px);
+}

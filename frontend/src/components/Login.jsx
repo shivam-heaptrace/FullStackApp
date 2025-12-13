@@ -1,26 +1,36 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { loginEmployee } from "../api/employeeApi";
+import "../css/login.css";
+import "../css/style.css";
 
 const Login = ({ onLogin }) => {
+  const initMessage = {
+    message: "",
+    success: null,
+  };
+
   const [email, setEmail] = useState("");
+  const [status, setStatus] = useState(initMessage);
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await loginEmployee(email, password);
-      setMessage(res.data.detail);
+      setStatus({ message: res.data.detail, success: true });
       onLogin();
     } catch (err) {
-      setMessage(err.response?.data?.detail || "Error");
+      setStatus({
+        message: err.response?.data?.detail || "Error",
+        success: false,
+      });
     }
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+    <div style={{ margin: "50px" }}>
+      <h2 style={{ textAlign: "center" }}>Login</h2>
+      <form onSubmit={handleSubmit} className="loginForm radius">
         <input
           placeholder="Email"
           value={email}
@@ -32,9 +42,15 @@ const Login = ({ onLogin }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="radius">
+          Login
+        </button>
       </form>
-      <p>{message}</p>
+      {status.message && (
+        <p className={status.success ? "success" : "failed"}>
+          {status.message}
+        </p>
+      )}
     </div>
   );
 };

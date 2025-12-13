@@ -6,7 +6,6 @@ import EmployeeList from "./components/EmployeeList";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Check login status on page refresh
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn");
     if (loggedIn === "true") {
@@ -27,10 +26,10 @@ function App() {
   return (
     <div>
       {!isLoggedIn ? (
-        <>
-          <Register />
+        <div className="" style={{ display: "flex", flexDirection: "row" }}>
           <Login onLogin={handleLogin} />
-        </>
+          <Register />
+        </div>
       ) : (
         <>
           <button onClick={handleLogout}>Logout</button>

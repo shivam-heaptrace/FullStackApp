@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { registerEmployee } from "../api/employeeApi";
+import "../css/style.css";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -19,7 +20,7 @@ const Register = () => {
 
   return (
     <div>
-      <h2>Register</h2>
+      <h2 style={{textAlign:'center'}}>Register</h2>
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Name"
