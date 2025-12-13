@@ -33,3 +33,16 @@ button{
 button:active{
     transform: translate(2px, 3px);
 }
+
+.home{
+    animation: animate 1s ease 0s infinite alternate none;
+}
+
+@keyframes animate {
+    from{
+        transform: translateY(5px);
+    }
+    to{
+        transform: translateY(-5px);
+    }
+}

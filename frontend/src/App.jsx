@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Register from "./components/Register";
-import Login from "./components/Login";
+import Home from "./components/Home";
 import EmployeeList from "./components/EmployeeList";
 
 function App() {
@@ -26,10 +25,9 @@ function App() {
   return (
     <div>
       {!isLoggedIn ? (
-        <div className="" style={{ display: "flex", flexDirection: "row" }}>
-          <Login onLogin={handleLogin} />
-          <Register />
-        </div>
+        <>
+          <Home onLogin={handleLogin} />
+        </>
       ) : (
         <>
           <button onClick={handleLogout}>Logout</button>
